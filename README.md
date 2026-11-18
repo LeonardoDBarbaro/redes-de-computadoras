@@ -42,6 +42,7 @@ Default gateway: `.254`.
 
 - [Network Controller](NETWORK-CONTROLLER.md): discovery, inventario, topología y path trace
 - [API REST con Postman](API-REST.md): ticket, credenciales y flow-analysis
+- [Pendientes](PENDIENTES.md): checklist de lo que falta en el `.pkt` según la consigna
 
 ## Contenido
 
