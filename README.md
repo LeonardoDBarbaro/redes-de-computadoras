@@ -51,7 +51,13 @@ Default gateway: `.254`.
 | `scripts/` | Script de Python contra la API del Network Controller |
 | `capturas/` | Capturas de Postman y del Network Controller |
 
-## Cómo probar el script
-1. Abrir el `.pkt` en Packet Tracer y habilitar la API del Network Controller (*Options → Preferences → Misc*, puerto 58000).
-2. `pip install requests`
-3. `python scripts/<script>.py`
+## Script de inventario
+
+[`scripts/script_inventario.py`](scripts/script_inventario.py): pide un ticket al Network Controller, consulta `/api/v1/network-device` y muestra el inventario en una tabla (hostname, IP de gestión, tipo, plataforma, versión y estado). También lo exporta a `inventario_red.csv`.
+
+```bash
+pip install -r requirements.txt
+python scripts/script_inventario.py
+```
+
+> El script apunta al NC en `172.16.250.60` con el usuario `cisco` / `class`. Si lo corrés contra otro NC, cambiá `NC_IP` y las credenciales al principio del archivo (desde la PC host es `127.0.0.1:58000`).
