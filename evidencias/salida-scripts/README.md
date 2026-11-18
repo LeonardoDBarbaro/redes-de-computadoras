@@ -10,4 +10,6 @@ Ejecutados el 18/11/2026 contra el `.pkt` final (`pkt/TP-Integrador-Grupo11.pkt`
 | `04_tabulate.py` | ❌ `KeyError: 'hostname'` (ver nota) |
 | `05_inventario-csv.py` (propio) | ✅ [`05_inventario-csv.txt`](05_inventario-csv.txt) + [`inventario_red.csv`](inventario_red.csv) |
 
-**Nota:** `02` y `04` (de la cátedra) leen `item["hostname"]` directamente. El NC secundario (`172.16.250.70`) aparece en el inventario como *Unsupported* y sin hostname, así que esos scripts cortan con `KeyError`. El script propio usa `dev.get("hostname", "N/A")` y no tiene ese problema.
+**Nota:** `02` y `04` (de la cátedra) leen `item["hostname"]` directamente. Cualquier equipo del inventario **sin hostname** los hace cortar con `KeyError`. Con la topología correcta eso pasa siempre, porque la consigna exige que el **ISP** quede en *Wrong credential*: el NC no puede entrar y no conoce su hostname. Lo mismo pasa con el NC secundario si está en el `.pkt` (aparece como *Unsupported*).
+
+El script propio (`05`) usa `dev.get("hostname", "N/A")` y lista todo el inventario sin errores, incluido el ISP. Es una de las mejoras que le agrega a los suministrados.
