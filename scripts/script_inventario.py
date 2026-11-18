@@ -13,8 +13,8 @@ URL_BASE = f"http://{NC_IP}"
 
 url_ticket = f"{URL_BASE}/api/v1/ticket"
 payload_ticket = {
-    "username": "cisco",
-    "password": "class"
+    "username": "admin",
+    "password": "cisco"
 }
 headers_ticket = {
     "Content-Type": "application/json"

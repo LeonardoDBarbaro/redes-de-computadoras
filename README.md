@@ -60,4 +60,4 @@ pip install -r requirements.txt
 python scripts/script_inventario.py
 ```
 
-> El script apunta al NC en `172.16.250.60` con el usuario `cisco` / `class`. Si lo corrés contra otro NC, cambiá `NC_IP` y las credenciales al principio del archivo (desde la PC host es `127.0.0.1:58000`).
+> El script apunta al NC en `172.16.250.60` con el usuario `admin` / `cisco`. Si lo corrés contra otro NC, cambiá `NC_IP` y las credenciales al principio del archivo (desde la PC host es `127.0.0.1:58000`).
