@@ -92,7 +92,7 @@ end
 write memory
 ```
 
-Además, en el NC: **Provisioning → Credentials → CLI** → editar `SSH-admin` y cargar **Enable Password: `class`**.
+Además, en el NC: **Provisioning → Credentials → CLI** → editar `SSH-admin` y cargar **Enable Password: `class`**. ✅ *Hecho por la API (`PUT /global-credential/cli`); guardar el `.pkt` para que quede.*
 
 **Verificación:** desde un router, `ssh -l admin 172.16.11.10`: tiene que entrar directo con el prompt `#`.
 
@@ -104,7 +104,7 @@ Además, en el NC: **Provisioning → Credentials → CLI** → editar `SSH-admi
    - DNS Server: `172.16.250.20`
    - NTP Server: `172.16.250.30`
    - **Save**
-2. **Provisioning → Inventory**: borrar todos los dispositivos (ícono de engranaje → *Delete*).
+2. **Provisioning → Inventory**: borrar los dispositivos con IP vieja. ✅ *Hecho por la API: se borraron el `172.16.250.40` sin hostname y los 2960 con `.10.1`, `.100.1` y `.200.1`, y se descubrieron los 2960 en sus IPs actuales (`172.16.10.30`, `.11.10`, `.12.20`). Siguen **Unreachable** hasta aplicar el punto 3 en los 2960.*
 3. **Provisioning → Discovery**: editar `Discovery-general` (CDP, semilla `172.16.50.5` o la IP de Borde, credencial `SSH-admin`) → **Apply** y esperar a que termine (Fast Forward).
 4. Controlar en **Inventory**:
    - 9 equipos del AS (Borde, Piso A, Piso B, tres 3650, tres 2960) en **Managed**
@@ -166,6 +166,7 @@ Alternativa más prolija: una nota chica al lado de cada router con sus interfac
 - [x] README que explica qué hace cada script.
 - [x] `requirements.txt` y `.gitignore` de la cátedra (excluyen `venv/`, `cisco/`, `.env`).
 - [x] Repositorio público.
+- [ ] Ejecutar los 4 scripts suministrados. ⚠️ `02` y `04` fallan con `KeyError: 'hostname'` mientras haya en el inventario un equipo sin hostname (los 2960 todavía Unreachable): correrlos después de que todo quede Managed.
 - [ ] Ejecutar los 4 scripts suministrados y el propio, y sacar captura de la salida para el informe. Los de la cátedra usan `cisco` / `cisco123!`: crear ese usuario en el NC o cambiarlo en `01` y `04`. En `02` y `03` hay que pegar el ticket que da el `01`.
 - [ ] Hacer el último commit **antes de la fecha de entrega**.
 
