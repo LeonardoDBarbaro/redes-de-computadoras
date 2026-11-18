@@ -1,0 +1,6 @@
+! Pegar en 2960-PisoA, 2960-PisoB y 2960-Servidores
+configure terminal
+username admin privilege 15 secret cisco
+end
+write memory
+show running-config | include username

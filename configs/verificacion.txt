@@ -1,0 +1,31 @@
+! ===== Conectividad (desde PCs, Command Prompt)
+ping 198.51.100.30
+ping 2001:DB8:FFFF:100::30
+ping segundoparcial.test
+tracert 198.51.100.30
+tracert 2001:DB8:FFFF:100::30
+ipconfig /all
+
+! ===== DHCP (3650-Servidores y Router-PisoB)
+show ip dhcp pool
+show ip dhcp binding
+
+! ===== VLANs (2960) y router on a stick (4331)
+show vlan brief
+show interfaces trunk
+show ip interface brief
+show running-config | include default-gateway
+
+! ===== Ruteo (cada router del AS)
+show ip protocols
+show ipv6 protocols
+show ip route
+show ipv6 route
+show running-config | section ospf
+show ip ospf neighbor
+show ipv6 ospf neighbor
+
+! ===== NTP y DNS enviados desde el NC (al menos dos equipos)
+show running-config | include ntp
+show running-config | include name-server
+show clock

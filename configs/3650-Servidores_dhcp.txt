@@ -1,0 +1,12 @@
+configure terminal
+ip dhcp excluded-address 172.16.250.1 172.16.250.99
+ip dhcp excluded-address 172.16.250.254
+ip dhcp pool VLAN20
+ network 172.16.250.0 255.255.255.0
+ default-router 172.16.250.254
+ dns-server 172.16.250.20
+ domain-name segundoparcial.test
+ exit
+end
+write memory
+show ip dhcp pool

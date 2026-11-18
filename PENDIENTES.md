@@ -3,6 +3,7 @@
 Revisión contra la consigna **`TP4_3643_2026_Integrador_v4.pdf`**, con la solución de cada punto. Los puntos 1 a 5 son del `.pkt`; los 6 a 8, del repo, el informe y la entrega.
 
 > Credencial del NC y de los equipos: `admin` / `cisco` · enable secret: `class`.
+> Los bloques de CLI de los puntos 1–3 están también como archivos listos para pegar en [`configs/`](configs/).
 > Después de cada bloque: `end` → `write memory` en cada equipo y **Fast Forward Time**.
 
 ## ✅ Lo que ya cumple

@@ -1,0 +1,9 @@
+! Cambiar Fa0/20 por el puerto libre donde se conecte la PC cliente DHCP
+configure terminal
+interface FastEthernet0/20
+ switchport mode access
+ switchport access vlan 20
+ no shutdown
+ exit
+end
+write memory
