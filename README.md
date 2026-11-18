@@ -16,6 +16,8 @@ Diseño propio: **Edificio A**, **Edificio B**, **granja de servidores**, **rout
 
 Default gateway: `.254`.
 
+| Web server (detrás del ISP) | 198.51.100.30 | RFC 5737 |
+
 ## VLANs
 
 | VLAN | Uso |
@@ -36,13 +38,18 @@ Default gateway: `.254`.
   ```
 - Dominio de prueba: `SegundoParcial.test` (registro A al web server).
 
+## Documentación
+
+- [Network Controller](NETWORK-CONTROLLER.md): discovery, inventario, topología y path trace
+- [API REST con Postman](API-REST.md): ticket, credenciales y flow-analysis
+
 ## Contenido
 
 | Carpeta | Qué hay |
 |---|---|
 | `pkt/` | Archivo de Packet Tracer |
 | `scripts/` | Script de Python contra la API del Network Controller |
-| `capturas/` | Capturas de Postman, Network Controller y pruebas |
+| `capturas/` | Capturas de Postman y del Network Controller |
 
 ## Cómo probar el script
 1. Abrir el `.pkt` en Packet Tracer y habilitar la API del Network Controller (*Options → Preferences → Misc*, puerto 58000).
