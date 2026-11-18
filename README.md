@@ -2,8 +2,6 @@
 
 **Universidad Nacional de La Matanza.** Este repositorio tiene los scripts de Python del TP: los **suministrados por la cátedra** (incorporados con su historial desde [redes-computadoras/api-python-redes-cisco](https://github.com/redes-computadoras/api-python-redes-cisco)) y el **script propio** del grupo. También suma la documentación de la topología y de la API.
 
-**Autor del repo:** Leo Barbaro
-
 ## Scripts (actividad 4)
 
 Todos hablan con la API REST del Network Controller de Packet Tracer en `http://localhost:58000/api/v1`.
