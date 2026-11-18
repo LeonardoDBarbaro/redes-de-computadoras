@@ -8,3 +8,4 @@
 | ![](04-pc3-ipconfig-dhcp.png) | **PC3**: recibe `172.16.250.100/24` por DHCP del 3650 (gateway `.254`, DNS `.20`) y su IPv6 por SLAAC en `2001:DB8:10:250::/64`. |
 | ![](05-nc-principal-global-settings.png) | **NC Principal**: gateway y DNS en IPv4/IPv6, y servidor NTP `172.16.250.30`. |
 | ![](06-nc-principal-interfaz.png) | **NC Principal**: interfaz `172.16.250.60/24` y `2001:DB8:10:250::60/64`. |
+| ![](07-router-pisob-dhcp-pool.png) | **Router-PisoB (4331)**: pool DHCP `POOL-PISO-B` (`172.16.200.0/24`, gateway `.254`, DNS `172.16.250.20`), con `.1`–`.29` y `.254` excluidas. |
