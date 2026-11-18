@@ -8,7 +8,7 @@ import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-NC_IP = "172.16.250.60"
+NC_IP = "localhost:58000"
 URL_BASE = f"http://{NC_IP}"
 
 url_ticket = f"{URL_BASE}/api/v1/ticket"

@@ -1,6 +1,17 @@
+# Entornos virtuales y secretos (de la cátedra)
+cisco/
+venv/
+.venv/
+.env
+
+# Python
 __pycache__/
 *.pyc
+
+# Editor / SO
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Salida del script propio
 inventario_red.csv

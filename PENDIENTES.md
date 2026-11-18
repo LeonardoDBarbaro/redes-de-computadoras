@@ -1,6 +1,6 @@
 # Pendientes para dejar el `.pkt` conforme a la consigna
 
-Revisión del archivo contra `TP4_3643_2026_Integrador_v3.pdf`, con la solución de cada punto.
+Revisión contra la consigna **`TP4_3643_2026_Integrador_v4.pdf`**, con la solución de cada punto. Los puntos 1 a 5 son del `.pkt`; los 6 a 8, del repo, el informe y la entrega.
 
 > Credencial del NC y de los equipos: `admin` / `cisco` · enable secret: `class`.
 > Después de cada bloque: `end` → `write memory` en cada equipo y **Fast Forward Time**.
@@ -115,7 +115,7 @@ Además, en el NC: **Provisioning → Credentials → CLI** → editar `SSH-admi
 
 ## 5. Place Notes
 
-**Problema:** las IPs de la nota están cruzadas y faltan rótulos obligatorios.
+**Problema:** las IPs de la nota están cruzadas y faltan rótulos obligatorios. La consigna (pág. 8) pide como mínimo: IPv4/IPv6 de cada red y de las interfaces de los routers (incluido el enlace con el ISP), número y nombre de cada VLAN, IPs de los servidores y del NC, dominio del HTTP y **las credenciales** (SSH, enable y NC).
 
 **Solución:** editar la nota existente (doble clic) y reemplazar el texto. Para sacar las IPs reales de cada router: `show ip interface brief` y `show ipv6 interface brief`.
 
@@ -131,6 +131,11 @@ SERVIDORES (VLAN 20 – 172.16.250.0/24 – 2001:DB8:10:250::/64)
   NC Principal 172.16.250.60   2001:DB8:10:250::60
   NC Secundario 172.16.250.70  2001:DB8:10:250::70
   Gateway      172.16.250.254
+
+CREDENCIALES
+  SSH (routers, 3650 y 2960): admin / cisco
+  Enable secret: class
+  Network Controller: admin / cisco
 
 WEB SERVER (detrás del ISP)  198.51.100.30/24   2001:DB8:FFFF:100::30/64
 
@@ -155,8 +160,45 @@ Alternativa más prolija: una nota chica al lado de cada router con sus interfac
 
 ---
 
+## 6. Repositorio de GitHub (actividad 4) — ✅ resuelto
+- [x] Contiene los **scripts suministrados** por la cátedra (`src/01` a `src/04`, traídos con su historial) y el **script propio** (`src/05_inventario-csv.py`).
+- [x] README que explica qué hace cada script.
+- [x] `requirements.txt` y `.gitignore` de la cátedra (excluyen `venv/`, `cisco/`, `.env`).
+- [x] Repositorio público.
+- [ ] Ejecutar los 4 scripts suministrados y el propio, y sacar captura de la salida para el informe. Los de la cátedra usan `cisco` / `cisco123!`: crear ese usuario en el NC o cambiarlo en `01` y `04`. En `02` y `03` hay que pegar el ticket que da el `01`.
+- [ ] Hacer el último commit **antes de la fecha de entrega**.
+
+## 7. Postman (actividad 3)
+- [ ] Los 4 endpoints (POST, GET, PUT, DELETE) tienen que ser **distintos de los que usaron en el TP3**. Los actuales son `POST /ticket`, `GET` y `PUT /global-credential/cli`, y `POST` y `DELETE /flow-analysis`: confirmar contra lo entregado en el TP3.
+- [ ] Por cada endpoint, en el informe: método, URL, headers, body, respuesta con código de estado, y **la parte de la documentación de Cisco** (*Northbound API for Network Controller Device*) con la que se contrasta.
+- [ ] (Opcional) Exportar la colección de Postman a `.json` y sumarla al `.zip`.
+
+## 8. Entrega (MIEL)
+- [ ] Un único `TP4_3643_Grupo11.zip` con:
+  - `TP4_3643_Grupo11.pdf` (informe)
+  - `TP4_3643_Grupo11.pkt`, guardado **al final**, con el NC completo: usuario creado, credenciales, Discovery con todo en Managed, y NTP y DNS enviados.
+- [ ] Los scripts **no** van en el zip: va el link al repo en el informe (apartado de la actividad 4).
+- [ ] Plazo: 15 días corridos desde la 2° clase de práctica.
+- [ ] NC secundario: la consigna lo pide **solo para la presentación oral** (solo IP, máscara y gateway). Ya está en el `.pkt` con `172.16.250.70`: dejarlo así y ponerlo en un rótulo.
+
+### Estructura del informe
+1. Carátula: universidad, asignatura (3643), TP N° 4, comisión, Grupo 11, apellido y nombre de cada integrante, fecha.
+2. Índice.
+3. Diseño: captura de la topología con rótulos visibles, tablas IPv4 e IPv6 (con el enlace al ISP), tabla de VLANs y justificación de las subredes.
+4. Desarrollo: un apartado por actividad, con las evidencias de abajo.
+5. Conclusiones: problemas y cómo se resolvieron (ej.: vecinos OSPF, acceso externo del NC deshabilitado, 2960 sin `privilege 15`, ISP descubierto por el NC).
+
+### Evidencias mínimas
+- [ ] **Conectividad:** tabla de pings entre hosts de distintas redes y al HTTP, en IPv4 e IPv6; `tracert` de un host al HTTP en IPv4 e IPv6.
+- [ ] **DHCP:** `show ip dhcp binding` en el 3650 **y** en el 4331, e `ipconfig` de un host de cada uno.
+- [ ] **VLANs:** `show vlan brief` y `show interfaces trunk` en los 2960; `show ip interface brief` en el 4331 con subinterfaces.
+- [ ] **Ruteo:** `show ip protocols`, `show ipv6 protocols`, `show ip route` y `show ipv6 route` en **cada** router del AS (señalando la default), y `show running-config | section ospf` en cada uno.
+- [ ] **NC:** credenciales, Discovery, lista en Managed, topología en Assurance; en cada 2960, `show ip interface brief` (VLAN de administración up/up) y `show running-config | include default-gateway`; `show running-config | include ntp` en al menos dos equipos, y `show clock`.
+- [ ] **API y scripts:** las 4 peticiones de Postman y la salida de los scripts (ver 6 y 7).
+- [ ] Cada captura con el prompt visible, recortada (usar `section` / `include`), con número de figura, epígrafe y 2–3 líneas de explicación.
+
 ## Verificación final
 - [ ] Ping y `tracert` de PC0 / PC2 al web server (IPv4 e IPv6) y `ping segundoparcial.test`.
 - [ ] `show ip ospf neighbor` y `show ipv6 ospf neighbor` en Borde.
-- [ ] Correr `scripts/script_inventario.py`: los 2960 tienen que salir **Reachable** y el ISP no tiene que figurar como gestionado.
-- [ ] Guardar el `.pkt` y reemplazar `pkt/TP-Integrador-Grupo11.pkt` en el repo.
+- [ ] Correr `src/05_inventario-csv.py`: los 2960 tienen que salir **Reachable** y el ISP no tiene que figurar como gestionado.
+- [ ] Guardar el `.pkt` y reemplazar `pkt/TP-Integrador-Grupo11.pkt` en el repo (en el zip va como `TP4_3643_Grupo11.pkt`).
