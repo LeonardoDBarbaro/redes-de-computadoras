@@ -3,10 +3,10 @@ no username admin
 no ip route 172.16.0.0 255.255.0.0 192.0.2.20
 ip route 0.0.0.0 0.0.0.0 192.0.2.20
 no ipv6 route 2001:DB8:10::/48 2001:DB8:FFFF::2
-ipv6 route ::/0 2001:DB8:FFFF::2
+ipv6 route ::/0 Serial0/1/0
 no ip name-server 172.16.250.20
 no ntp server 172.16.250.30
 end
 write memory
 show ip route static
-show ipv6 route static
+show ipv6 route
