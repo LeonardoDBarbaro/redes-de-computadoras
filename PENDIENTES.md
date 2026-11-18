@@ -6,6 +6,19 @@ Revisión contra la consigna **`TP4_3643_2026_Integrador_v4.pdf`**, con la soluc
 > Los bloques de CLI de los puntos 1–3 están también como archivos listos para pegar en [`configs/`](configs/).
 > Después de cada bloque: `end` → `write memory` en cada equipo y **Fast Forward Time**.
 
+## 📌 Estado al 18/11/2026
+
+| Punto | Estado |
+|---|---|
+| 1 · DHCP en un 3650 | ✅ Pool `VLAN20` en 3650-Servidores. **PC3** (Access Servidores Fa0/3, VLAN 20) recibió `172.16.250.100` por DHCP. IPv6 por SLAAC (`2001:DB8:10:250::/64`). |
+| 2 · ISP | ✅ Sin `username admin`, rutas default IPv4 e IPv6 hacia Borde. En el NC figura **Wrong credential**. |
+| 3 · Switches 2960 | ✅ Los tres en **Managed**. |
+| 4 · Network Controller | ✅ 9 equipos del AS en Managed, ISP en Wrong credential, inventario sin entradas viejas. NC secundario sacado del `.pkt` (se agrega para la oral: `172.16.250.70/24`, GW `.254`). |
+| 5 · Place Notes | ⚠️ Nota corregida: credenciales, NC `.60` (verificado), servidores, dominio, VLANs, DHCP y enlace Borde–ISP. **Falta:** IPs de las interfaces de los routers (enlaces `172.16.50.x/30` y sus IPv6) e IPv6 de las VLANs 30 y 40. |
+| 6 · Repo GitHub | ✅ Scripts de la cátedra + propio, README y evidencias. |
+| 7 · Postman | ⚠️ Confirmar que los endpoints no repiten los del TP3. |
+| 8 · Informe y entrega | ❌ Pendiente. |
+
 ## ✅ Lo que ya cumple
 - 6 routers en el AS (Borde, Piso A, Piso B y los tres 3650 con `ip routing` / `ipv6 unicast-routing`), con redundancia en el núcleo.
 - 3 switches 2960 de acceso, ISP fuera del OSPF (serial a Borde), DNS/NTP/FTP en la intranet y web server colgado del ISP.
