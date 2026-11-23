@@ -14,3 +14,6 @@
 | ![](10-borde-ipv6-serial-ruta-default.png) | **Borde**: el enlace IPv6 con el ISP queda en `2001:DB8:FFFF::2/127` y se agrega la ruta default IPv6 `::/0 → 2001:DB8:FFFF::3`, que faltaba. |
 | ![](11-isp-ipv6-serial-ping-borde.png) | **ISP**: la serial pasa a `2001:DB8:FFFF::3/127` (antes `::1/127`, en otra subred que el Borde) y el ping IPv6 al Borde responde 100%. |
 | ![](12-pc0-ping-ipv6-web-server.png) | **PC0 (Piso A)**: ping IPv6 al web server `2001:DB8:FFFF:100::30` con respuesta (TTL 124), con el enlace Borde–ISP ya corregido. |
+| ![](13-router-pisoa-interfaces.png) | **Router Piso A (4331)**: router on a stick con las subinterfaces `Gi0/0/1.10` (VLAN 10, `172.16.11.254`) y `Gi0/0/1.30` (VLAN 30, `172.16.100.254`), en IPv4 e IPv6. |
+| ![](14-router-pisob-interfaces.png) | **Router Piso B (4331)**: router on a stick con `Gi0/0/1.10` (VLAN 10, `172.16.12.254`) y `Gi0/0/1.40` (VLAN 40, `172.16.200.254`), en IPv4 e IPv6. |
+| ![](15-borde-interfaces.png) | **Borde**: interfaces hacia Switch Piso A, Switch Piso B y el ISP (serial), en IPv4 e IPv6. |
