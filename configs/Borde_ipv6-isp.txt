@@ -1,0 +1,9 @@
+! Enlace IPv6 Borde-ISP en la misma /127 (Borde ::2, ISP ::3) y ruta default IPv6
+configure terminal
+interface Serial0/1/0
+ ipv6 address 2001:DB8:FFFF::2/127
+ exit
+ipv6 route ::/0 2001:DB8:FFFF::3
+end
+write memory
+ping 2001:DB8:FFFF::3

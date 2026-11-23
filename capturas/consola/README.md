@@ -11,3 +11,6 @@
 | ![](07-router-pisob-dhcp-pool.png) | **Router-PisoB (4331)**: pool DHCP `POOL-PISO-B` (`172.16.200.0/24`, gateway `.254`, DNS `172.16.250.20`), con `.1`–`.29` y `.254` excluidas. |
 | ![](08-pc-pisob-ipconfig-dhcp.png) | **PC de Piso B**: recibe `172.16.200.30/24` por DHCP del Router-PisoB (gateway `.254`, DNS `172.16.250.20`). |
 | ![](09-dns-registros-a-aaaa.png) | **Servidor DNS**: registros A (`198.51.100.30`) y AAAA (`2001:DB8:FFFF:100::30`) para `segundoparcial.test`. |
+| ![](10-borde-ipv6-serial-ruta-default.png) | **Borde**: el enlace IPv6 con el ISP queda en `2001:DB8:FFFF::2/127` y se agrega la ruta default IPv6 `::/0 → 2001:DB8:FFFF::3`, que faltaba. |
+| ![](11-isp-ipv6-serial-ping-borde.png) | **ISP**: la serial pasa a `2001:DB8:FFFF::3/127` (antes `::1/127`, en otra subred que el Borde) y el ping IPv6 al Borde responde 100%. |
+| ![](12-pc0-ping-ipv6-web-server.png) | **PC0 (Piso A)**: ping IPv6 al web server `2001:DB8:FFFF:100::30` con respuesta (TTL 124), con el enlace Borde–ISP ya corregido. |

@@ -15,7 +15,7 @@ Correcciones de la cátedra sobre la primera entrega, y cómo se resuelven.
 | 1 | **ISP administrado por el NC** | ✅ Resuelto en el `.pkt` del repo | Sin `username admin`, Discovery repetido y ISP en **Wrong credential**. Para el informe: captura del inventario (9 del AS en Managed + ISP en Wrong credential), del bloque de [`configs/ISP.txt`](configs/ISP.txt) y explicar por qué `no cdp run` no alcanzaba. |
 | 2 | **Faltan conclusiones** | ❌ Informe | Sección con problemas reales (síntoma, causa, solución). |
 | 3 | **Dos DHCP para 172.16.200.0/24** (3650 Switch Piso B y 4331 Piso B) | ✅ `.pkt` / ❌ informe | En el `.pkt` del repo, `show ip dhcp pool` en 3650-EdificioB **no muestra ningún pool** (verificado el 22/11). El DHCP del 3650 está en **3650-Servidores** (VLAN 20, PC3), y el del 4331 en Router Piso B (VLAN 40): redes distintas. **En el informe:** sacar cualquier mención o captura de un pool en el Switch Piso B y mostrar el de 3650-Servidores. Si hiciera falta, [`configs/3650-EdificioB_sacar-dhcp.txt`](configs/3650-EdificioB_sacar-dhcp.txt). |
-| 4 | **Conectividad solo desde PC1** | ❌ Capturas + informe | Tabla de pings entre todas las redes y a los servidores, en IPv4 e IPv6 (ver plantilla abajo). |
+| 4 | **Conectividad solo desde PC1** | ⚠️ IPv6 a Internet arreglado (PC0 → web server responde). Faltan capturas + informe | Tabla de pings entre todas las redes y a los servidores, en IPv4 e IPv6 (ver plantilla abajo). |
 | 5 | **Postman sin contrastar con la doc de Cisco** | ❌ Informe | Por cada endpoint: qué hace, qué dice la doc de Cisco y epígrafe explicativo. |
 | 6 | **Carátula** incompleta | ❌ Informe | Los 6 integrantes de MIeL y el número de grupo (11). Archivo: `TP4_3643_Grupo11_R1.pdf`. |
 | 7 | **Un solo rótulo** en la topología | ❌ `.pkt` | Notas con IPs de las interfaces de cada router, redes y VLANs. |
@@ -41,7 +41,7 @@ Correcciones de la cátedra sobre la primera entrega, y cómo se resuelven.
 - **2960 sin gestión.** Síntoma: Unreachable/no Managed. Causa: faltaba la IP en la VLAN de administración y `privilege 15` en el usuario. Solución: SVI de gestión + default-gateway + `username admin privilege 15`.
 - **Vecinos OSPF.** Síntoma: tablas de ruteo incompletas. Causa: redes no publicadas/vecinos no formados. Solución: revisar `network` y `show ip ospf neighbor` equipo por equipo.
 - **API del NC no respondía.** Síntoma: Postman sin conexión y `REST_API_NO_EXTERNAL_ACCESS`. Causa: acceso externo deshabilitado. Solución: *Preferences → Misc* y *Access Enable* en el NC.
-- **Ruta default IPv6 en el ISP.** Síntoma: no se instalaba. Causa: siguiente salto fuera del /127. Solución: ruta por la interfaz serial.
+- **IPv6 entre Borde e ISP.** Síntoma: sin respuesta IPv6 hacia el web server; la ruta default IPv6 no se instalaba. Causa: Borde `2001:DB8:FFFF::2/127` e ISP `::1/127` quedaban en subredes /127 distintas, y el Borde no tenía ruta default IPv6. Solución: ISP a `::3/127` (misma subred que `::2`), `ipv6 route ::/0 2001:DB8:FFFF::3` en el Borde y `::/0` por la serial en el ISP. Se probó usar `::0` en el Borde, pero Packet Tracer no respondió (es la dirección anycast de la subred).
 - **Scripts 02 y 04 de la cátedra.** Síntoma: `KeyError: 'hostname'`. Causa: equipos sin hostname en el inventario (ISP en Wrong credential). Solución: el script propio usa `.get()`.
 - **DHCP duplicado.** Dos pools para la misma LAN (172.16.200.0/24); se dejó solo el del 4331 (Router Piso B) y el del 3650 se configuró en 3650-Servidores para la VLAN 20, con PC3 como cliente.
 
