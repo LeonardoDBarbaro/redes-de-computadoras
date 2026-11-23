@@ -1,6 +1,6 @@
 # Salidas de los scripts
 
-Ejecutados el 22/11/2026 contra el `.pkt` final (`pkt/TP-Integrador-Grupo11.pkt`), desde Windows (`localhost:58000`), con el usuario del NC del grupo (`admin` / `cisco`).
+Ejecutados el 22/11/2026 contra el `.pkt` del 22/11 (en la reentrega R1 se reemplazó por `pkt/TP4_3643_Grupo11_R1.pkt`), desde Windows (`localhost:58000`), con el usuario del NC del grupo (`admin` / `cisco`).
 
 | Script | Resultado |
 |---|---|

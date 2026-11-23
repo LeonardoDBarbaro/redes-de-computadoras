@@ -261,4 +261,4 @@ Alternativa más prolija: una nota chica al lado de cada router con sus interfac
 - [ ] Ping y `tracert` de PC0 / PC2 al web server (IPv4 e IPv6) y `ping segundoparcial.test`.
 - [ ] `show ip ospf neighbor` y `show ipv6 ospf neighbor` en Borde.
 - [ ] Correr `src/05_inventario-csv.py`: los 2960 tienen que salir **Reachable** y el ISP no tiene que figurar como gestionado.
-- [ ] Guardar el `.pkt` y reemplazar `pkt/TP-Integrador-Grupo11.pkt` en el repo (en el zip va como `TP4_3643_Grupo11.pkt`).
+- [x] `.pkt` de la reentrega en el repo: `pkt/TP4_3643_Grupo11_R1.pkt` (reemplaza a `pkt/TP-Integrador-Grupo11.pkt`).
