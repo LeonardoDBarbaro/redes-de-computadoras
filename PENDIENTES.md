@@ -18,7 +18,7 @@ Correcciones de la cátedra sobre la primera entrega, y cómo se resuelven.
 | 4 | **Conectividad solo desde PC1** | ⚠️ IPv6 a Internet arreglado (PC0 → web server responde). Faltan capturas + informe | Tabla de pings entre todas las redes y a los servidores, en IPv4 e IPv6 (ver plantilla abajo). |
 | 5 | **Postman sin contrastar con la doc de Cisco** | ❌ Informe | Por cada endpoint: qué hace, qué dice la doc de Cisco y epígrafe explicativo. |
 | 6 | **Carátula** incompleta | ❌ Informe | Los 6 integrantes de MIeL y el número de grupo (11). Archivo: `TP4_3643_Grupo11_R1.pdf`. |
-| 7 | **Un solo rótulo** en la topología | ❌ `.pkt` | Notas con IPs de las interfaces de cada router, redes y VLANs. |
+| 7 | **Un solo rótulo** en la topología | ✅ `.pkt` | Una nota por router con sus interfaces IPv4/IPv6 (ver [`configs/rotulos.md`](configs/rotulos.md)) y la nota general corregida. Captura: [`capturas/topologia-con-rotulos.webp`](capturas/topologia-con-rotulos.webp). |
 
 **Entrega:** `TP4_3643_Grupo11_R1.zip` con `TP4_3643_Grupo11_R1.pdf` + el `.pkt` (link de GitHub en el informe).
 
