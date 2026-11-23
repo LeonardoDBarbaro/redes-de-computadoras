@@ -1,0 +1,11 @@
+! Switch Piso B (3650-EdificioB): sacar el pool DHCP duplicado de 172.16.200.0/24
+! (esa red ya la atiende el DHCP del Router Piso B / 4331)
+! 1) Ver el nombre del pool:
+show ip dhcp pool
+! 2) Borrarlo (cambiar NOMBRE por el que muestra el comando anterior):
+configure terminal
+no ip dhcp pool NOMBRE
+no ip dhcp excluded-address 172.16.200.1 172.16.200.29
+end
+write memory
+show ip dhcp pool

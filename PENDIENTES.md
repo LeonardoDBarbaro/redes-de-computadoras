@@ -6,6 +6,47 @@ Revisión contra la consigna **`TP4_3643_2026_Integrador_v4.pdf`**, con la soluc
 > Los bloques de CLI de los puntos 1–3 están también como archivos listos para pegar en [`configs/`](configs/).
 > Después de cada bloque: `end` → `write memory` en cada equipo y **Fast Forward Time**.
 
+## 🔁 Reentrega R1 — plazo miércoles 25/11
+
+Correcciones de la cátedra sobre la primera entrega, y cómo se resuelven.
+
+| # | Corrección | Estado | Qué hacer |
+|---|---|---|---|
+| 1 | **ISP administrado por el NC** | ✅ Resuelto en el `.pkt` del repo | Sin `username admin`, Discovery repetido y ISP en **Wrong credential**. Para el informe: captura del inventario (9 del AS en Managed + ISP en Wrong credential), del bloque de [`configs/ISP.txt`](configs/ISP.txt) y explicar por qué `no cdp run` no alcanzaba. |
+| 2 | **Faltan conclusiones** | ❌ Informe | Sección con problemas reales (síntoma, causa, solución). |
+| 3 | **Dos DHCP para 172.16.200.0/24** (3650 Switch Piso B y 4331 Piso B) | ❌ `.pkt` | Sacar el pool del 3650 Switch Piso B con [`configs/3650-EdificioB_sacar-dhcp.txt`](configs/3650-EdificioB_sacar-dhcp.txt). El DHCP del 3650 ya está en **3650-Servidores** (VLAN 20, PC3), que es otra red. |
+| 4 | **Conectividad solo desde PC1** | ❌ Capturas + informe | Tabla de pings entre todas las redes y a los servidores, en IPv4 e IPv6 (ver plantilla abajo). |
+| 5 | **Postman sin contrastar con la doc de Cisco** | ❌ Informe | Por cada endpoint: qué hace, qué dice la doc de Cisco y epígrafe explicativo. |
+| 6 | **Carátula** incompleta | ❌ Informe | Los 6 integrantes de MIeL y el número de grupo (11). Archivo: `TP4_3643_Grupo11_R1.pdf`. |
+| 7 | **Un solo rótulo** en la topología | ❌ `.pkt` | Notas con IPs de las interfaces de cada router, redes y VLANs. |
+
+**Entrega:** `TP4_3643_Grupo11_R1.zip` con `TP4_3643_Grupo11_R1.pdf` + el `.pkt` (link de GitHub en el informe).
+
+### Plantilla de tabla de conectividad (punto 4)
+
+| Origen → Destino | IPv4 | IPv6 |
+|---|---|---|
+| PC0 (Piso A) → PC2 (Piso B) | | |
+| PC0 (Piso A) → PC3 (Servidores) | | |
+| PC2 (Piso B) → PC3 (Servidores) | | |
+| PC0 → DNS / NTP / FTP | | |
+| PC2 → DNS / NTP / FTP | | |
+| PC0 → Web server (198.51.100.30) | | |
+| PC2 → Web server | | |
+| PC3 → Web server | | |
+| PC0 → `segundoparcial.test` | | |
+
+### Ideas para conclusiones (punto 2)
+- **ISP administrado por el NC.** Síntoma: aparecía Managed. Causa: tenía la misma credencial CLI que el AS; `no cdp run` solo lo ocultaba de CDP. Solución: `no username admin` y nuevo Discovery → Wrong credential.
+- **2960 sin gestión.** Síntoma: Unreachable/no Managed. Causa: faltaba la IP en la VLAN de administración y `privilege 15` en el usuario. Solución: SVI de gestión + default-gateway + `username admin privilege 15`.
+- **Vecinos OSPF.** Síntoma: tablas de ruteo incompletas. Causa: redes no publicadas/vecinos no formados. Solución: revisar `network` y `show ip ospf neighbor` equipo por equipo.
+- **API del NC no respondía.** Síntoma: Postman sin conexión y `REST_API_NO_EXTERNAL_ACCESS`. Causa: acceso externo deshabilitado. Solución: *Preferences → Misc* y *Access Enable* en el NC.
+- **Ruta default IPv6 en el ISP.** Síntoma: no se instalaba. Causa: siguiente salto fuera del /127. Solución: ruta por la interfaz serial.
+- **Scripts 02 y 04 de la cátedra.** Síntoma: `KeyError: 'hostname'`. Causa: equipos sin hostname en el inventario (ISP en Wrong credential). Solución: el script propio usa `.get()`.
+- **DHCP duplicado.** Dos pools para la misma LAN; se dejó solo el del 4331 y el del 3650 se movió a la VLAN de servidores.
+
+---
+
 ## 📌 Estado al 18/11/2026
 
 | Punto | Estado |
