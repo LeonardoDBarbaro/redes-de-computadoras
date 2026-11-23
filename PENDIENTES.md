@@ -14,7 +14,7 @@ Correcciones de la cátedra sobre la primera entrega, y cómo se resuelven.
 |---|---|---|---|
 | 1 | **ISP administrado por el NC** | ✅ Resuelto en el `.pkt` del repo | Sin `username admin`, Discovery repetido y ISP en **Wrong credential**. Para el informe: captura del inventario (9 del AS en Managed + ISP en Wrong credential), del bloque de [`configs/ISP.txt`](configs/ISP.txt) y explicar por qué `no cdp run` no alcanzaba. |
 | 2 | **Faltan conclusiones** | ❌ Informe | Sección con problemas reales (síntoma, causa, solución). |
-| 3 | **Dos DHCP para 172.16.200.0/24** (3650 Switch Piso B y 4331 Piso B) | ❌ `.pkt` | Sacar el pool del 3650 Switch Piso B con [`configs/3650-EdificioB_sacar-dhcp.txt`](configs/3650-EdificioB_sacar-dhcp.txt). El DHCP del 3650 ya está en **3650-Servidores** (VLAN 20, PC3), que es otra red. |
+| 3 | **Dos DHCP para 172.16.200.0/24** (3650 Switch Piso B y 4331 Piso B) | ✅ `.pkt` / ❌ informe | En el `.pkt` del repo, `show ip dhcp pool` en 3650-EdificioB **no muestra ningún pool** (verificado el 22/11). El DHCP del 3650 está en **3650-Servidores** (VLAN 20, PC3), y el del 4331 en Router Piso B (VLAN 40): redes distintas. **En el informe:** sacar cualquier mención o captura de un pool en el Switch Piso B y mostrar el de 3650-Servidores. Si hiciera falta, [`configs/3650-EdificioB_sacar-dhcp.txt`](configs/3650-EdificioB_sacar-dhcp.txt). |
 | 4 | **Conectividad solo desde PC1** | ❌ Capturas + informe | Tabla de pings entre todas las redes y a los servidores, en IPv4 e IPv6 (ver plantilla abajo). |
 | 5 | **Postman sin contrastar con la doc de Cisco** | ❌ Informe | Por cada endpoint: qué hace, qué dice la doc de Cisco y epígrafe explicativo. |
 | 6 | **Carátula** incompleta | ❌ Informe | Los 6 integrantes de MIeL y el número de grupo (11). Archivo: `TP4_3643_Grupo11_R1.pdf`. |
@@ -43,7 +43,7 @@ Correcciones de la cátedra sobre la primera entrega, y cómo se resuelven.
 - **API del NC no respondía.** Síntoma: Postman sin conexión y `REST_API_NO_EXTERNAL_ACCESS`. Causa: acceso externo deshabilitado. Solución: *Preferences → Misc* y *Access Enable* en el NC.
 - **Ruta default IPv6 en el ISP.** Síntoma: no se instalaba. Causa: siguiente salto fuera del /127. Solución: ruta por la interfaz serial.
 - **Scripts 02 y 04 de la cátedra.** Síntoma: `KeyError: 'hostname'`. Causa: equipos sin hostname en el inventario (ISP en Wrong credential). Solución: el script propio usa `.get()`.
-- **DHCP duplicado.** Dos pools para la misma LAN; se dejó solo el del 4331 y el del 3650 se movió a la VLAN de servidores.
+- **DHCP duplicado.** Dos pools para la misma LAN (172.16.200.0/24); se dejó solo el del 4331 (Router Piso B) y el del 3650 se configuró en 3650-Servidores para la VLAN 20, con PC3 como cliente.
 
 ---
 
