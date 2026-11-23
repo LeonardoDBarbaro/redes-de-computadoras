@@ -1,4 +1,4 @@
 $ python src/01_get-ticket.py
 Ticket request status:  201
-{'response': {'idleTimeout': 900, 'serviceTicket': 'NC-21-6c940bf49307409eb9c1-nbi', 'sessionTimeout': 3600}, 'version': '1.0'}
-The service ticket number is:  NC-21-6c940bf49307409eb9c1-nbi
+{'response': {'idleTimeout': 900, 'serviceTicket': 'NC-28-fe3419aa4e534a558401-nbi', 'sessionTimeout': 3600}, 'version': '1.0'}
+The service ticket number is:  NC-28-fe3419aa4e534a558401-nbi

@@ -50,7 +50,7 @@ Todos hablan con la API REST del Network Controller de Packet Tracer en `http://
 | VLAN | Nombre | Red IPv4 |
 |---|---|---|
 | 10 | MGMT | 172.16.11.0/24 (Piso A) · 172.16.12.0/24 (Piso B) · 172.16.10.0/24 (Servidores) |
-| 20 | SERVIDORES | 172.16.250.0/24: DNS .20 · NTP .30 · FTP .50 · NC .60 · NC secundario .70 |
+| 20 | SERVIDORES | 172.16.250.0/24: DNS .20 · NTP .30 · FTP .50 · NC .60 · PC3 (DHCP) .100 · NC secundario .70 (solo para la oral) |
 | 30 | USUARIOS-A | 172.16.100.0/24 |
 | 40 | USUARIOS-B | 172.16.200.0/24 |
 
@@ -60,4 +60,6 @@ Todos hablan con la API REST del Network Controller de Packet Tracer en `http://
 |---|---|
 | `src/` | Scripts de Python (cátedra + propio) |
 | `pkt/` | Archivo de Packet Tracer |
-| `capturas/` | Capturas de Postman y del Network Controller |
+| `capturas/` | Capturas de Postman, del Network Controller, de consola y de la topología con rótulos |
+| `evidencias/` | Salida de los scripts y CSV del inventario |
+| `configs/` | Bloques de comandos aplicados y texto de los rótulos |

@@ -43,6 +43,8 @@ Respuesta `200 OK`.
 ```
 PC1 (Edificio A) → Web server. Respuesta `201 Created` con `flowAnalysisId`.
 
+> La captura es de la primera versión del `.pkt`, cuando PC1 tenía `172.16.100.10`. En la topología final PC1 es **`172.16.100.30`**: para rehacer la prueba, usar `"sourceIP": "172.16.100.30"`.
+
 ![](capturas/postman/06-post-flow-analysis.png)
 
 ## 5. Borrar el análisis — `DELETE /flow-analysis/{flowAnalysisId}`

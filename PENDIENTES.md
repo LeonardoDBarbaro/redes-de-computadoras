@@ -47,15 +47,15 @@ Correcciones de la cátedra sobre la primera entrega, y cómo se resuelven.
 
 ---
 
-## 📌 Estado al 18/11/2026
+## 📌 Estado al 22/11/2026
 
 | Punto | Estado |
 |---|---|
 | 1 · DHCP en un 3650 | ✅ Pool `VLAN20` en 3650-Servidores. **PC3** (Access Servidores Fa0/3, VLAN 20) recibió `172.16.250.100` por DHCP. IPv6 por SLAAC (`2001:DB8:10:250::/64`). |
-| 2 · ISP | ✅ Sin `username admin`, rutas default IPv4 e IPv6 hacia Borde. En el NC figura **Wrong credential**. |
+| 2 · ISP | ✅ Sin `username admin`, rutas default IPv4 e IPv6 hacia Borde. En el NC figura **Wrong credential**. Enlace IPv6 Borde–ISP corregido (`::2/127` – `::3/127`): PC0 llega al web server por IPv6. |
 | 3 · Switches 2960 | ✅ Los tres en **Managed**. |
 | 4 · Network Controller | ✅ 9 equipos del AS en Managed, ISP en Wrong credential, inventario sin entradas viejas. NC secundario sacado del `.pkt` (se agrega para la oral: `172.16.250.70/24`, GW `.254`). |
-| 5 · Place Notes | ⚠️ Nota corregida: credenciales, NC `.60` (verificado), servidores, dominio, VLANs, DHCP y enlace Borde–ISP. **Falta:** IPs de las interfaces de los routers (enlaces `172.16.50.x/30` y sus IPv6) e IPv6 de las VLANs 30 y 40. |
+| 5 · Place Notes | ✅ Nota general corregida y una nota por router con sus interfaces IPv4/IPv6 ([`configs/rotulos.md`](configs/rotulos.md)). |
 | 6 · Repo GitHub | ✅ Scripts de la cátedra + propio, README y evidencias. |
 | 7 · Postman | ⚠️ Confirmar que los endpoints no repiten los del TP3. |
 | 8 · Informe y entrega | ❌ Pendiente. |
@@ -121,7 +121,11 @@ no username admin
 no ip route 172.16.0.0 255.255.0.0 192.0.2.20
 ip route 0.0.0.0 0.0.0.0 192.0.2.20
 no ipv6 route 2001:DB8:10::/48 2001:DB8:FFFF::2
-ipv6 route ::/0 2001:DB8:FFFF::2
+ipv6 route ::/0 Serial0/1/0
+interface Serial0/1/0
+ no ipv6 address 2001:DB8:FFFF::1/127
+ ipv6 address 2001:DB8:FFFF::3/127
+ exit
 no ip name-server 172.16.250.20
 no ip domain-name SegundoParcial.test
 no ntp server 172.16.250.30
@@ -201,8 +205,8 @@ VLANs
   40 USUARIOS-B  172.16.200.0/24  (GW .254)
 
 ENLACE BORDE – ISP (serial)
-  Borde Se0/1/0  192.0.2.20/24   2001:DB8:FFFF::2
-  ISP   Se0/1/0  192.0.2.10/24   2001:DB8:FFFF::1
+  Borde Se0/1/0  192.0.2.20/24   2001:DB8:FFFF::2/127
+  ISP   Se0/1/0  192.0.2.10/24   2001:DB8:FFFF::3/127
 
 ENLACES INTERNOS (/30 – /127)
   Borde ? – 3650-EdificioA ?   172.16.50.?/30   2001:DB8:10:50::?/127
